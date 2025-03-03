@@ -31,9 +31,14 @@ const MovieDetailPage = () => {
           <div
             className="detail-img"
             style={{
-              backgroundImage: `url(https://media.themoviedb.org/t/p/w300_and_h450_bestv2${data?.poster_path})`,
+              backgroundImage: `url(${
+                data?.poster_path
+                  ? `https://media.themoviedb.org/t/p/w300_and_h450_bestv2${data?.poster_path}`
+                  : `https://thumb.ac-illust.com/b1/b170870007dfa419295d949814474ab2_t.jpeg`
+              })`,
             }}
-          ></div>
+          >
+          </div>
         </Col>
 
         <Col md={7} xs={12}>
@@ -45,7 +50,9 @@ const MovieDetailPage = () => {
           <h1>{data?.title}</h1>
           <p>{data?.overview}</p>
           <div>popularity: {data?.popularity}</div>
-          <div>budget: $ {data?.budget.toLocaleString("ko-KR")}</div>
+          <div>
+            budget: $ {data?.budget ? data?.budget.toLocaleString("ko-KR") : ""}
+          </div>
           <div>{data?.release_date}</div>
           <Videos id={id} />
         </Col>

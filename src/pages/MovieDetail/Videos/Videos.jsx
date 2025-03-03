@@ -25,14 +25,16 @@ const Videos = ({ id }) => {
 
   const { data, isLoading, isError, error } = useMovieVideosQuery({ id });
 
-  console.log("video", data);
-
   if (isLoading) {
     return <Spinner animation="border" variant="info" />;
   }
 
   if (isError) {
     return <Alert variant="danger">{error?.message}</Alert>;
+  }
+
+  if (data.length == 0) {
+    return;
   }
 
   return (

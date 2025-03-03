@@ -21,7 +21,6 @@ const GenreFilter = ({ data: movieData, setSortedMovie }) => {
       return movie?.genre_ids?.includes(id);
     });
     setSortedMovie(filteredData);
-    console.log("filter",filteredData)
     return filteredData;
   };
 
@@ -30,11 +29,11 @@ const GenreFilter = ({ data: movieData, setSortedMovie }) => {
       <h5 className="filter-title"> Genre</h5>
       {data?.map((genre, index) => (
         <button
-          onClick={() => filteredMovie(genre.id)}
+          onClick={() => filteredMovie(genre?.id)}
           className="genre-button"
           key={index}
         >
-          {genre.name}
+          {genre?.name}
         </button>
       ))}
     </div>

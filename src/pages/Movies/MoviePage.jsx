@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useSearchMovieQuery } from "../../hooks/useSearchMovie";
 import { useSearchParams } from "react-router-dom";
 import MovieCard from "../../common/MovieCard/MovieCard";
@@ -25,6 +25,9 @@ const MoviePage = () => {
   const [query, setQuery] = useSearchParams();
   const keyword = query.get("q");
 
+  const pageRef = useRef(1);
+  const keywordRef = useRef("");
+
   //영화 데이터 호출
   const { data, isLoading, isError, error } = useSearchMovieQuery({
     keyword,
@@ -50,17 +53,18 @@ const MoviePage = () => {
   useEffect(() => {
     if (
       data?.results &&
-      sortedMovie.length == 0
-      // (JSON.stringify(data?.results) !== JSON.stringify(sortedMovie) ||
-      //   sortedMovie.length == 0)
+      (movieData?.length == 0 ||
+        data?.page !== pageRef.current ||
+        keyword !== keywordRef.current)
     ) {
       setSortedMovie(movieData);
+      pageRef.current = data?.page;
+      keywordRef.current = keyword;
     }
-  }, [data, sortedMovie]);
+  }, [data, sortedMovie, data?.page, keyword]);
 
   const handlePageClick = ({ selected }) => {
     setPage(selected + 1);
-    console.log("page", selected);
   };
 
   if (isLoading) {
@@ -79,7 +83,11 @@ const MoviePage = () => {
   }
 
   if (data.results.length == 0) {
-    return <Alert className="text-center" variant="danger">데이터가 없습니다.</Alert>;
+    return (
+      <Alert className="text-center" variant="danger">
+        결과가 없습니다.
+      </Alert>
+    );
   }
 
   return (

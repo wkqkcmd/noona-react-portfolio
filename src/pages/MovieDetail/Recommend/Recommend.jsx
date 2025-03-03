@@ -8,10 +8,8 @@ import { useNavigate } from "react-router-dom";
 
 const Recommend = ({ id }) => {
   const navigate = useNavigate();
-
   const { data, isLoading, isError, error } = useMovieRecommendQuery({ id });
 
-  console.log("recomaanddata", data);
   if (isLoading) {
     return <Spinner animation="grow" />;
   }
@@ -22,7 +20,7 @@ const Recommend = ({ id }) => {
 
   return (
     <div>
-      <h3 className="mt-5 mb-3">Recommendataion({data.slice(0,8).length})</h3>
+      <h3 className="mt-5 mb-3">Recommendataion({data.slice(0, 8).length})</h3>
       <Row>
         <Col xs={6} lg={6}>
           {data.slice(0, 4).map((recommend, index) => (
@@ -42,10 +40,17 @@ const Recommend = ({ id }) => {
               onClick={() => navigate(`/movies/${recommend?.id}`)}
               key={index}
               className="recommend-img"
-              style={{
-                backgroundImage: `url(https://media.themoviedb.org/t/p/w300_and_h450_bestv2${recommend.poster_path})`,
-              }}
-            ></div>
+              style={
+                recommend?.poster_path
+                  ? {
+                      backgroundImage: `url(https://media.themoviedb.org/t/p/w300_and_h450_bestv2${recommend?.poster_path})`,
+                    }
+                  : {}
+              }
+            >
+                  {!recommend?.poster_path && <h3>{recommend?.title}</h3>}
+
+            </div>
           ))}
         </Col>
       </Row>
