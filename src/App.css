@@ -1,0 +1,9 @@
+body{
+  background-color: black !important;
+  color: white !important;
+}
+
+.spinner{
+  text-align: center !important;
+  position: relative !important;
+}

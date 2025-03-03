@@ -1,0 +1,30 @@
+.banner {
+  height: 56vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-bottom: 3em;
+}
+
+.banner::before {
+  content: "";
+  background: linear-gradient(to top, black, transparent);
+  position: absolute;
+  left: 0;
+  height: 56vh;
+  width: 100%;
+}
+
+.banner-text-area {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  padding: 1rem;
+}
+
+/*글씨에 그라데이션 효과 빼기*/
+.banner-text-area > * {
+  z-index: 2;
+}

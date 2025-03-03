@@ -1,0 +1,42 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+
+  --bs-pagination-hover-color: black;
+  --bs-pagination-focus-color: black;
+}
+
+.page-item {
+  margin: 1px;
+}
+
+.page-link {
+  color: darkgrey;
+  background-color: black;
+}
+
+.active > .page-link {
+  color: black;
+  background-color: white !important;
+  border-color: black;
+}
+
+@media (min-width: 992px) {
+  .option-panel {
+    display: block;
+  }
+}
+@media (max-width: 768px) {
+  .option-panel {
+    display: block;
+  }
+}
+
+@media (max-width: 576px) {
+  .option-panel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+}

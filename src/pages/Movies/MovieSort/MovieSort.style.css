@@ -1,0 +1,30 @@
+.sort-box{
+  margin-top: 1em;
+  margin-bottom: 10px;
+}
+
+.sort-button{
+  width: 300px;
+  text-align: center;
+}
+
+@media (max-width:992px){
+  .sort-button{
+    width: 700px;
+    margin-bottom: 10px;
+  } 
+}
+
+@media (max-width:768px){
+  .sort-button{
+    width: 100%;
+    margin-bottom: 10px;
+  } 
+}
+
+@media (max-width:576px){
+  .sort-button{
+    width: 400px;
+    margin-bottom: 10px;
+  } 
+}
